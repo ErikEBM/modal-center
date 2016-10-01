@@ -1,0 +1,82 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`modal-center`
+
+
+@demo demo/index.html 
+-->
+
+<dom-module id="modal-center">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      #id-modal {
+        text-decoration: none;
+      }
+      .maestro-oscuro {
+        background-color: rgba(0,0,0,.3);
+        position: absolute;
+        height: 100vh;
+        width: 100%;
+        top: 0;
+        left: 0;
+        display: none;
+        justify-content: center;
+        align-items: center;
+      
+
+      }
+      .ventana-modal {
+        width: 300px;
+        height: 300px;
+        background-color: white;
+      }
+    </style>
+    <a  id="id-modal"
+        on-tap="abrirModal" 
+        href="#">inicia sesión</a>
+    <div id="id-oscuro" 
+         class="maestro-oscuro"
+         on-tap="cerrarModal">
+         <div class="ventana-modal">
+            <content></content>
+         </div>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'modal-center',
+
+      properties: {
+        nombre: {
+          type: String,
+          value: 'inicia sesión',
+          
+        },
+      },
+
+      abrirModal: function () {
+        console.log("hola mundo");
+        var modalFondo = document.getElementById("id-oscuro");
+        console.log(modalFondo);
+        modalFondo.style.display = "flex";
+      },
+      
+      cerrarModal: function (e) {
+        console.log(e.target);
+        let modalFondo = e.target;
+        if (modalFondo.id == "id-oscuro") {
+          modalFondo.style.display = "none";
+        }
+       
+        
+      }
+
+    });
+  </script>
+</dom-module>
